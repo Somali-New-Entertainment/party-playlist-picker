@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block page_header %}<h1>Party Jam Playlists</h1>{% endblock %}
+
+{% block content %}
+<ul>
+  {% for entry in playlists %}
+    <li>
+      <a href="/playlists/edit/{{ entry.id|escape }}">{{ entry.title|escape }}</a>
+      ({{ entry.num_videos }} video{{ entry.num_videos|pluralize }})
+    </li>
+  {% endfor %}
+</ul>
+
+<p>
+  <a href=/playlists/create>Create Playlist</a>
+</p>
+{% endblock %}

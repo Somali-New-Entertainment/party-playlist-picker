@@ -1,0 +1,24 @@
+{% if playlist_id and video_list %}
+  <div class=vertical-spacer>
+    <p>
+      <a target=_blank
+         href="http://www.youtube.com/playlist?list=PL{{ playlist_id|escape }}">
+        View Playlist on YouTube
+      </a>
+    </p>
+  </div>
+{% endif %}
+
+<ul class=video-list>
+  {% comment %}
+    This li must be exactly one line long.  Otherwise, it breaks the diff
+    algorithm used in the JavaScript.  To see this in action, try adding
+    three videos to your playlist, and then delete one in the middle.  The
+    animation should *not* show the third video being deleted and re-added.
+    If you need to edit this HTML, use an IDE to reformat the code, do your
+    edits, and then collapse the code to a single line again.
+  {% endcomment %}
+  {% for video in video_list %}
+    <li id="li-{{ video.id|escape }}" class="box {{ class_name|escape }}" data-video-li-id="li-{{ video.id|escape }}"> <div class=video-other-stuff> <div class=video-thumbnail>{% if video.thumbnail %}<img src="{{ video.thumbnail|escape }}" alt=thumbnail {% if video.embeddable %} class=playable-thumbnail-image {% endif %}>{% if video.embeddable %}<img src=/static/images/play.png class=play-overlay alt=Play>{% endif %}{% endif %} </div> <input type=button class="{{ button_name|lower|escape }}-button" id="{{ video.id|escape }}" value="{{ button_name|escape }}"></div> <div class=video-title>{{ video.title|escape }}</div> <div class=video-duration>{{ video.duration|escape }}</div> <div class=video-description>{{ video.description|default_if_none:"No description."|escape }} </div> <div class=video-description-fade></div> </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block page_header %}<h1>Authorization Required</h1>{% endblock %}
+
+{% block content %}
+  <p>
+    In order to continue, you must
+    <a href="{{ oauth_uri|escape }}" target=_blank>authorize</a>
+    this application.  Note, this will open a new window.
+  </p>
+
+  <p>
+    When you are finished, you may close that window and
+    <a href="{{ continuation_uri|escape }}">continue</a>
+    within the current window.
+  </p>
+
+  <p>
+    Sorry for the inconvenience.
+  </p>
+{% endblock %}

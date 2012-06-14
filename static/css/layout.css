@@ -1,0 +1,200 @@
+/*
+Copyright 2012 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+body {
+  margin-top: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#navigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+  margin: 5px;
+}
+
+.box {
+  list-style: none;
+  padding: 5px;
+  background-color: #F5F5F5;
+  border: 1px solid #DCDCDC;
+}
+
+.video-list {
+  padding-left: 0;
+}
+
+.video-list li.box {
+  width: 400px;
+  height: 125px;
+  margin-bottom: 5px;
+  cursor: move;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-other-stuff {
+  float: right;
+  height: 100%;
+}
+
+.video-title {
+  font-weight: bold;
+}
+
+.video-duration {
+  padding-bottom: 1em;
+  font-style: italic;
+  font-size: 75%;
+}
+
+.video-description {
+  font-size: 75%;
+}
+
+.video-description-fade {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  height: 2em;
+  background-color: #F5F5F5;
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom,
+                                       from(rgba(0,0,0,0)), to(rgba(0,0,0,1)));
+}
+
+.video-description,
+.video-description-fade {
+  width: 272px;
+}
+
+#playlist-container {
+  float: right;
+  width: 50%;
+}
+
+#search-container {
+  float: left;
+  width: 50%;
+}
+
+#notification {
+  display: none;
+  background-color: yellow;
+  text-align: center;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+}
+
+.ol-based-form ol {
+  padding-left: 0;
+}
+
+.ol-based-form li {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+.ol-based-form label {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+  vertical-align: top;
+}
+
+.ol-based-form label + * {
+  width: 200px;
+}
+
+.ol-based-form li#buttons {
+  margin-left: 150px;
+}
+
+#friends-list {
+  padding-left: 0;
+  max-height: 220px;
+  overflow: auto;
+}
+
+#friends-list li {
+  margin: auto 5px 5px 0;
+  width: 300px;
+  float: left;
+}
+
+.profile-picture {
+  max-height: 50px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.inactive {
+  filter: alpha(opacity=40);
+  opacity: 0.4;
+}
+
+#q {
+  width: 200px;
+}
+
+.vertical-spacer {
+  height: 22px;
+}
+
+#edit-playlist-columns {
+  min-width: 900px;
+}
+
+#yt-player-container {
+  display: none;
+  cursor: pointer;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: gray;
+  filter: alpha(opacity=90);
+  opacity: 0.9;
+}
+
+#yt-player {
+  position: fixed;
+  height: 390px;
+  margin-top: -195px;
+  width: 640px;
+  margin-left: -320px;
+  top: 50%;
+  left: 50%;
+}
+
+.video-thumbnail {
+  position: relative;
+}
+
+.playable-thumbnail-image {
+  cursor: pointer;
+}
+
+.play-overlay {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 29px;
+  left: 44px;
+}

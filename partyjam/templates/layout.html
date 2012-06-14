@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <title>{% block title %}YouTube Party Jam{% endblock %}</title>
+    <link rel=stylesheet href=/static/css/layout.css type=text/css>
+    <script src=//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js type=text/javascript></script>
+    <script src=//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js type=text/javascript></script>
+    {% block javascript_head %}{% endblock %}
+  </head>
+
+  <body>
+    {% if not embedded %}
+      <ul id=navigation class=box>
+        <li><a href=https://code.google.com/a/google.com/p/yt-party-jam/wiki/Help>Help</a></li>
+        <li><a href=https://code.google.com/a/google.com/p/yt-party-jam/issues/list>Report an Issue</a></li>
+        <li><a href=/playlists/create>Create a Playlist</a></li>
+        <li><a href=/playlists>Manage Playlists</a></li>
+        {% if logout_url %}
+          <li><a href="{{ logout_url|escape }}">Logout</a></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+
+    <div id=notification></div>
+    {% block page_header %}{% endblock %}
+    {% if errors %}
+      <ul>
+      {% for error in errors %}
+        <li>{{ error|escape }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </body>
+</html>

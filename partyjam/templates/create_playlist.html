@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block page_header %}<h1>Create Playlist</h1>{% endblock %}
+
+{% block content %}
+<p>
+  Create a playlist to edit with your circle of friends.
+</p>
+
+<form method=post action="" class=ol-based-form>
+  <ol>
+    <li>
+      <label for=name>Name:</label>
+      <input type=text id=name name=name value="{{ name|escape }}"
+        required>
+    </li>
+    <li>
+      <label for=description>Description:</label>
+      <textarea id=description name=description
+        required>{{ description|escape }}</textarea>
+    </li>
+    <li id=buttons>
+      <input type=submit value=Create> | <a href=/playlists>Cancel</a>
+    </li>
+  </ol>
+</form>
+
+{% endblock %}

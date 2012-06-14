@@ -1,0 +1,10 @@
+<select id=circle-id name=circle_id>
+  {% for item in circles.items %}
+    <option
+      {% ifequal item.id circle_id %}
+        selected
+      {% endifequal %}
+      value="{{ item.id|escape }}"
+    >{{ item.displayName|escape }}</option>
+  {% endfor %}
+</select>

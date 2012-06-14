@@ -1,0 +1,10 @@
+<ul id=friends-list>
+  {% for f in friends %}
+    <li class="box {% if not f.editing %}inactive{% endif %}">
+      <a href="{{ f.profile_url|escape }}" target=_blank
+        ><img class=profile-picture src="{{ f.image_url|escape }}"
+          alt=profile></a>
+      {{ f.display_name|escape }}
+    </li>
+  {% endfor %}
+</ul>

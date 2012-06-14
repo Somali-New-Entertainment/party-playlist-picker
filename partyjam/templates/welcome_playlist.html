@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block javascript_head %}
+  {% if is_logged_in %}
+    <script type=text/javascript>
+      var redirectionUrl = {{ quoted_redirection_url }};
+      window.location.replace(redirectionUrl);
+    </script>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div itemscope itemtype=http://schema.org/Product>
+  <h1 itemprop=name>YouTube Party Jam</h1>
+  <img itemprop=image src=/static/images/pjlogo.png>
+  <p itemprop=description>You've been invited to <a href={{ quoted_redirection_url }}>edit</a> a shared YouTube playlist!</p>
+</div>
+{% endblock %}
