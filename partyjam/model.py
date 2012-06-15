@@ -25,3 +25,14 @@ class PlaylistMetadata(db.Model):
   owner = db.UserProperty()
   playlist_id = db.StringProperty()
   uuid = db.StringProperty()
+
+class Person(db.Model):
+  """This keeps track of metadata about a specific person."""
+  user_id = db.StringProperty()
+  display_name = db.StringProperty()
+  image_url = db.StringProperty()
+  profile_url = db.StringProperty()
+
+class PlaylistEditors(db.Model):
+  """This keeps track of all the people who have edited a given playlist."""
+  playlist_id = db.StringProperty()

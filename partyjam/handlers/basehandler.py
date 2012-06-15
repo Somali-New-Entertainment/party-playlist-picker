@@ -143,15 +143,36 @@ class BaseHandler(webapp.RequestHandler):
             self.oauth2_decorator.credentials)))
       self.current_display_name = me["displayName"]
 
-      # TODO: Show everyone who has ever shown up with access to the playlist.
+      # TODO: Front some of the following datastore lookups with memcache.
+      query = model.Person.all().filter("user_id = ", me["id"])
+      person = query.get()
+      if person is None:
+        person = model.Person(
+          user_id=me["id"],
+          display_name=me["displayName"],
+          image_url=me.get("image", {}).get("url",
+            "/static/images/default_profile.jpg"),
+          profile_url=me["url"]
+        )
+        person.put()
+
+      query = model.PlaylistEditors.all().filter("playlist_id = ",
+        playlist_id).ancestor(person)
+      if query.get() is None:
+        model.PlaylistEditors(parent=person, playlist_id=playlist_id).put()
+
       # We'll probably end up moving this out of the decorator entirely.
-      self.people = [dict(
-        id=me["id"],
-        display_name=me["displayName"],
-        image_url=me.get("image", {}).get(
-          "url", "/static/images/default_profile.jpg"),
-        profile_url=me["url"]
-      )]
+      self.people = []
+      playlist_editors = model.PlaylistEditors.all().filter("playlist_id = ",
+        playlist_id)
+      for playlist_editor in playlist_editors:
+        person = playlist_editor.parent()
+        self.people.append(dict(
+          id=person.user_id,
+          display_name=person.display_name,
+          image_url=person.image_url,
+          profile_url=person.profile_url
+        ))
 
       handler_method(self, playlist_id)
 
