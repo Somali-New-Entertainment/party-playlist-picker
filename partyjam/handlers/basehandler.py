@@ -119,7 +119,7 @@ class BaseHandler(webapp.RequestHandler):
           "WHERE playlist_id = :1", playlist_id)[0]
       except IndexError:
         self.error(404)
-        self.response.out.write("Party Jam does not know about playlist %s." %
+        self.response.out.write("Party Playlist Picker does not know about playlist %s." %
                                 escape(playlist_id))
         return
 

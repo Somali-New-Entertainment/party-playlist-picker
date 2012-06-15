@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""YouTube Party Jam.
+"""Party Playlist Picker.
 
 This is a demo project that makes use of YouTube and Google+ APIs to allow
 users to collaboratively edit a YouTube playlist.

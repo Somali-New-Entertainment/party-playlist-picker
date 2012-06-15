@@ -1,4 +1,4 @@
-YouTube Party Jam
+Party Playlist Picker
 =================
 
 This is a demo project that makes use of YouTube and Google+ APIs to allow
@@ -26,8 +26,8 @@ Limitations
 We specifically decided not to write any tests because this is a prototype.
 However, all the code was either pair programmed or code reviewed.
 
-Party Jam does not work with all YouTube playlists.  It only works with
-playlists that have been created within Party Jam.
+Party Playlist Picker does not work with all YouTube playlists.  It only works with
+playlists that have been created within Party Playlist Picker.
 
 Only 25 search results are shown.  There is no paging.
 
@@ -35,7 +35,7 @@ The ajax is pretty "blunt" right now.  Entire playlists are transported
 from the server every time the user makes a change.
 
 If you delete a playlist, it still appears to be active and can be modified
-using Party Jam. This is due to odd behavior on the part of the YouTube API.
+using Party Playlist Picker. This is due to odd behavior on the part of the YouTube API.
 
 Memcache updates are done without locking. There is a potential race condition
 as a result, in which the server could lose track of a channel id.
