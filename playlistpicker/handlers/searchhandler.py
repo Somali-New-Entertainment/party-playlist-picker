@@ -19,9 +19,9 @@ __author__ = \
 
 import gdata.youtube.service
 
-from partyjam.handlers.basehandler import BaseHandler
-from partyjam.utils import web as webutils
-from partyjam.utils import youtube as youtubeutils
+from playlistpicker.handlers.basehandler import BaseHandler
+from playlistpicker.utils import web as webutils
+from playlistpicker.utils import youtube as youtubeutils
 
 
 class SearchHandler(BaseHandler):

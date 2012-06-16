@@ -19,21 +19,21 @@ __author__ = \
 
 from oauth2client.appengine import OAuth2Handler
 
-from partyjam.handlers.addplaylistentryhandler import AddPlaylistEntryHandler
-from partyjam.handlers.connectedhandler import ConnectedHandler
-from partyjam.handlers.createplaylisthandler import CreatePlaylistHandler
-from partyjam.handlers.disconnectedhandler import DisconnectedHandler
-from partyjam.handlers.editplaylisthandler import EditPlaylistHandler
-from partyjam.handlers.generatechanneltokenhandler import\
+from playlistpicker.handlers.addplaylistentryhandler import AddPlaylistEntryHandler
+from playlistpicker.handlers.connectedhandler import ConnectedHandler
+from playlistpicker.handlers.createplaylisthandler import CreatePlaylistHandler
+from playlistpicker.handlers.disconnectedhandler import DisconnectedHandler
+from playlistpicker.handlers.editplaylisthandler import EditPlaylistHandler
+from playlistpicker.handlers.generatechanneltokenhandler import\
   GenerateChannelTokenHandler
-from partyjam.handlers.hangoutsgadget import HangoutsGadgetHandler
-from partyjam.handlers.moveplaylistentryhandler import MovePlaylistEntryHandler
-from partyjam.handlers.playlistshandler import PlaylistsHandler
-from partyjam.handlers.removeplaylistentryhandler import\
+from playlistpicker.handlers.hangoutsgadget import HangoutsGadgetHandler
+from playlistpicker.handlers.moveplaylistentryhandler import MovePlaylistEntryHandler
+from playlistpicker.handlers.playlistshandler import PlaylistsHandler
+from playlistpicker.handlers.removeplaylistentryhandler import\
   RemovePlaylistEntryHandler
-from partyjam.handlers.searchhandler import SearchHandler
-from partyjam.handlers.welcomehandler import WelcomeHandler
-from partyjam.handlers.welcomeplaylisthandler import WelcomePlaylistHandler
+from playlistpicker.handlers.searchhandler import SearchHandler
+from playlistpicker.handlers.welcomehandler import WelcomeHandler
+from playlistpicker.handlers.welcomeplaylisthandler import WelcomePlaylistHandler
 
 ROUTES = [
   ('/', WelcomeHandler),

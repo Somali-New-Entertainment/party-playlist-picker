@@ -24,7 +24,7 @@ users to collaboratively edit a YouTube playlist.
 __author__ = \
   'jeffy@google.com (Jeff Posnick) and jjinux@google.com (JJ Behrens)'
 
-from partyjam import initialization
+from playlistpicker import initialization
 
 initialization.fix_sys_path()
 initialization.fix_webapp_util_login_required()
@@ -33,7 +33,7 @@ initialization.fix_gdata_authsub_auth_label()
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 
-from partyjam.routes import ROUTES
+from playlistpicker.routes import ROUTES
 
 
 def main():

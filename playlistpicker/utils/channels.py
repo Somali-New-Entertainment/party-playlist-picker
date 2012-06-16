@@ -28,7 +28,7 @@ import simplejson
 from google.appengine.api import channel
 from google.appengine.api import users
 
-from partyjam.utils import memcache as memcacheutils
+from playlistpicker.utils import memcache as memcacheutils
 
 
 def create_channel_id():

@@ -17,9 +17,9 @@
 __author__ = \
   'jeffy@google.com (Jeff Posnick) and jjinux@google.com (JJ Behrens)'
 
-from partyjam.handlers.basehandler import BaseHandler
-from partyjam.utils import friendlist as friendlistutils
-from partyjam.utils import memcache as memcacheutils
+from playlistpicker.handlers.basehandler import BaseHandler
+from playlistpicker.utils import friendlist as friendlistutils
+from playlistpicker.utils import memcache as memcacheutils
 
 
 class ConnectedHandler(BaseHandler):

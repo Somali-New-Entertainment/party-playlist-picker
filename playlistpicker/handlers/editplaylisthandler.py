@@ -21,11 +21,11 @@ import re
 import simplejson
 import urllib
 
-from partyjam.handlers.basehandler import BaseHandler
-from partyjam.utils import friendlist as friendlistutils
-from partyjam.utils import googleplus as googleplusutils
-from partyjam.utils import web as webutils
-from partyjam.utils import youtube as youtubeutils
+from playlistpicker.handlers.basehandler import BaseHandler
+from playlistpicker.utils import friendlist as friendlistutils
+from playlistpicker.utils import googleplus as googleplusutils
+from playlistpicker.utils import web as webutils
+from playlistpicker.utils import youtube as youtubeutils
 
 
 class EditPlaylistHandler(BaseHandler):

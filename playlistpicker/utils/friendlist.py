@@ -17,9 +17,9 @@
 __author__ = \
   'jeffy@google.com (Jeff Posnick) and jjinux@google.com (JJ Behrens)'
 
-from partyjam.utils import channels as channelutils
-from partyjam.utils import memcache as memcacheutils
-from partyjam.utils import web as webutils
+from playlistpicker.utils import channels as channelutils
+from playlistpicker.utils import memcache as memcacheutils
+from playlistpicker.utils import web as webutils
 
 
 def render_friend_list(playlist_id, people=None):

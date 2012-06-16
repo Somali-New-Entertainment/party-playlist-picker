@@ -23,10 +23,10 @@ __author__ = \
 
 from google.appengine.api import channel
 
-from partyjam.handlers.basehandler import BaseHandler
-from partyjam.utils import channels as channelutils
-from partyjam.utils import memcache as memcacheutils
-from partyjam.utils import web as webutils
+from playlistpicker.handlers.basehandler import BaseHandler
+from playlistpicker.utils import channels as channelutils
+from playlistpicker.utils import memcache as memcacheutils
+from playlistpicker.utils import web as webutils
 
 
 class GenerateChannelTokenHandler(BaseHandler):

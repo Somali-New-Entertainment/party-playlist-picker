@@ -24,7 +24,7 @@ import gdata.youtube
 from gdata.alt import appengine
 from google.appengine.api import app_identity
 
-from partyjam.utils import web as webutils
+from playlistpicker.utils import web as webutils
 
 DEVELOPER_KEY = "AI39si4uqTJxCKRpohU_Dl4rejbjQSr3jqFvrk0npzIl4DD3PJDROS9srO12mjIseRnz1Z1cujO-1QurQeAi2DufqAK3mUYdVw"
 PLAYLIST_ENTRY_URL_RE = re.compile(

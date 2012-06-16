@@ -23,10 +23,10 @@ from gdata.service import RequestError
 import gdata.youtube
 from google.appengine.api import users
 
-from partyjam import model
-from partyjam.handlers.basehandler import BaseHandler
-from partyjam.utils import web as webutils
-from partyjam.utils import youtube as youtubeutils
+from playlistpicker import model
+from playlistpicker.handlers.basehandler import BaseHandler
+from playlistpicker.utils import web as webutils
+from playlistpicker.utils import youtube as youtubeutils
 
 PLAYLIST_PARAMS = ("name", "description")
 

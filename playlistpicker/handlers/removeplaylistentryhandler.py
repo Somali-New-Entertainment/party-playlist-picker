@@ -17,9 +17,9 @@
 __author__ = \
   'jeffy@google.com (Jeff Posnick) and jjinux@google.com (JJ Behrens)'
 
-from partyjam.handlers.basehandler import BaseHandler
-from partyjam.utils import channels as channelutils
-from partyjam.utils import youtube as youtubeutils
+from playlistpicker.handlers.basehandler import BaseHandler
+from playlistpicker.utils import channels as channelutils
+from playlistpicker.utils import youtube as youtubeutils
 
 
 class RemovePlaylistEntryHandler(BaseHandler):

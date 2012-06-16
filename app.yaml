@@ -16,7 +16,7 @@ handlers:
   login: admin
 
 - url: .*
-  script: partyjam/main.py
+  script: playlistpicker/main.py
 
 inbound_services:
 - channel_presence

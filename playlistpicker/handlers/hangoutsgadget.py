@@ -17,8 +17,8 @@
 __author__ = \
   'jeffy@google.com (Jeff Posnick) and jjinux@google.com (JJ Behrens)'
 
-from partyjam.handlers.basehandler import BaseHandler
-from partyjam.utils import web as webutils
+from playlistpicker.handlers.basehandler import BaseHandler
+from playlistpicker.utils import web as webutils
 
 
 class HangoutsGadgetHandler(BaseHandler):
