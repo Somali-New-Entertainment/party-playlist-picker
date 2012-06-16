@@ -19,6 +19,16 @@ Validate host_url wherever it's used.
 Going back to the page doesn't seem to work.
 How do we get the developer key out of the source?
 memcacheutils.lookup_channel leads to a KeyError sometimes.
+Document how to use the Google Hangouts widget.
+The list of partygoers wasn't working.
+The hangout stuff is currently broken.
+Go over project settings in code.google.com.
+Upgrade to a newer Google APIs client library.
+Dragging when the playlist is empty doesn't work.
+Put the uuid in the URL so that the admin can copy-and-paste it.
+Grep for TODO in the source and fix the bugs.
+We need a new favicon.ico.
+Do we need to go through any launch process?
 
 Limitations
 -----------
