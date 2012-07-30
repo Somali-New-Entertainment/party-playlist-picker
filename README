@@ -4,6 +4,14 @@ Party Playlist Picker
 This is a demo project that makes use of YouTube and Google+ APIs to allow
 users to collaboratively edit a YouTube playlist.
 
+Running
+-------
+
+This is a Google App Engine application written in Python. To fire up the
+server locally:
+
+	dev_appserver.py .
+
 Global TODOs
 ------------
 
