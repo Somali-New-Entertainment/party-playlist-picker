@@ -29,5 +29,3 @@ class DisconnectedHandler(BaseHandler):
     channel = memcacheutils.lookup_channel(channel_id)
     memcacheutils.remove_channel_from_memcache(channel_id)
     friendlistutils.notify_with_new_friend_list(channel["playlist_id"])
-
-
