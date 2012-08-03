@@ -15,30 +15,19 @@ server locally:
 Global TODOs
 ------------
 
-Check Jeffrey's recent changes to show who's currently editing:
-  https://code.google.com/p/party-playlist-picker/source/detail?r=9a49e0681be27bf5fe15022e059545339991eaf6
-Fix pdb_set_trace:
-  Don't force the user to reload the server.
 Improve the OAuth flow when embedded in a hangout:
   Can we automatically close the OAuth window after the user provides access?
-Switch to share widget:
-  Keep a list of everyone who have ever edited the page:
-    Store it in the datastore.
-  Show all playlists on playlist list page.
+Show all playlists on playlist list page.
 Validate host_url wherever it's used.
-Going back to the page doesn't seem to work.
-How do we get the developer key out of the source?
-memcacheutils.lookup_channel leads to a KeyError sometimes.
-Document how to use the Google Hangouts widget.
-The list of partygoers wasn't working.
 The hangout stuff is currently broken.
+Document how to use the Google Hangouts widget.
 Go over project settings in code.google.com.
 Upgrade to a newer Google APIs client library.
 Dragging when the playlist is empty doesn't work.
 Put the uuid in the URL so that the admin can copy-and-paste it.
 Grep for TODO in the source and fix the bugs.
-We need a new favicon.ico.
 Do we need to go through any launch process?
+A user with no Google+ account causes a 404 crash.
 
 Limitations
 -----------
@@ -46,8 +35,8 @@ Limitations
 We specifically decided not to write any tests because this is a prototype.
 However, all the code was either pair programmed or code reviewed.
 
-Party Playlist Picker does not work with all YouTube playlists.  It only works with
-playlists that have been created within Party Playlist Picker.
+Party Playlist Picker does not work with all YouTube playlists.  It only works
+with playlists that have been created within Party Playlist Picker.
 
 Only 25 search results are shown.  There is no paging.
 
@@ -66,3 +55,14 @@ user to reload the page.
 
 "Start a hangout" only works if the application is running on the public
 Internet.
+
+The "g+ Share" button doesn't work on localhost.
+
+If you close and reopen a tab containing the edit page, it'll show you the
+edit page as it was when it was first loaded. It won't show the changes you
+made to the playlist, and it definitely won't show you any changes that were
+made to the playlist while the tab was temporarily closed.
+
+You can take advantage of the above limitation to try to delete a video from a
+playlist that it's no longer a member of. This will result in an exception in
+the logs.
