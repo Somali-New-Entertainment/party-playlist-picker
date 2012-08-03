@@ -65,6 +65,7 @@ class BaseHandler(webapp.RequestHandler):
     from.
 
     """
+    self.current_user_id = None
     self.current_display_name = None
     self.people = None
     self.owner_oauth_token = None
@@ -108,6 +109,7 @@ class BaseHandler(webapp.RequestHandler):
 
       - self.playlist_metadata
       - self.people
+      - self.current_user_id
       - self.current_display_name
       - self.owner_oauth_token
 
@@ -141,6 +143,7 @@ class BaseHandler(webapp.RequestHandler):
         f=lambda: googleplusutils.service.people().get(userId="me").execute(
           webutils.create_authorized_http_with_timeout(
             self.oauth2_decorator.credentials)))
+      self.current_user_id = me["id"]
       self.current_display_name = me["displayName"]
 
       # TODO: Front some of the following datastore lookups with memcache.
@@ -168,7 +171,7 @@ class BaseHandler(webapp.RequestHandler):
       for playlist_editor in playlist_editors:
         person = playlist_editor.parent()
         self.people.append(dict(
-          id=person.user_id,
+          user_id=person.user_id,
           display_name=person.display_name,
           image_url=person.image_url,
           profile_url=person.profile_url
