@@ -32,10 +32,11 @@ from playlistpicker.utils import web as webutils
 class GenerateChannelTokenHandler(BaseHandler):
   @BaseHandler.oauth2_decorator.oauth_required
   @BaseHandler.authorize_playlist
-  def get(self, playlist_id):
+  def post(self, playlist_id):
     """Return a channel token."""
     channel_id = channelutils.create_channel_id()
     memcacheutils.update_memcache(channel_id, playlist_id,
+                                  self.current_user_id,
                                   self.current_display_name, self.people)
     webutils.render_json_to_response(
       self, dict(channelToken=channel.create_channel(channel_id)))
