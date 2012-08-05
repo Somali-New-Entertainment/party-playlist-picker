@@ -136,13 +136,20 @@ class BaseHandler(webapp.RequestHandler):
                                            'credentials').get()
       self.owner_oauth_token = owner_credentials.access_token
 
-      me = memcacheutils.cache_call(
-        key=self.oauth2_decorator.credentials.access_token,
-        namespace="oauth2_token_to_user",
-        time=memcacheutils.USER_EXPIRATION_SECS,
-        f=lambda: googleplusutils.service.people().get(userId="me").execute(
-          webutils.create_authorized_http_with_timeout(
-            self.oauth2_decorator.credentials)))
+      try:
+        me = memcacheutils.cache_call(
+          key=self.oauth2_decorator.credentials.access_token,
+          namespace="oauth2_token_to_user",
+          time=memcacheutils.USER_EXPIRATION_SECS,
+          f=lambda: googleplusutils.service.people().get(userId="me").execute(
+            webutils.create_authorized_http_with_timeout(
+              self.oauth2_decorator.credentials)))
+      except HttpError, e:
+        if e.resp['status'] == 404:
+          webutils.render_to_response(self, "no_profile.html")
+          return
+        raise
+
       self.current_user_id = me["id"]
       self.current_display_name = me["displayName"]
 
