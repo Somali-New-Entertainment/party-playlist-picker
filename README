@@ -15,19 +15,21 @@ server locally:
 Global TODOs
 ------------
 
-Improve the OAuth flow when embedded in a hangout:
-  Can we automatically close the OAuth window after the user provides access?
-Show all playlists on playlist list page.
-Validate host_url wherever it's used.
-The hangout stuff is currently broken.
-Document how to use the Google Hangouts widget.
 Go over project settings in code.google.com.
-Upgrade to a newer Google APIs client library.
-Dragging when the playlist is empty doesn't work.
+
 Put the uuid in the URL so that the admin can copy-and-paste it.
+
+Show all playlists on the playlist list page.
+
+Validate host_url wherever it's used.
+
+Upgrade to a newer Google APIs client library.
+
+Dragging when the playlist is empty doesn't work.
+
 Grep for TODO in the source and fix the bugs.
+
 Do we need to go through any launch process?
-A user with no Google+ account causes a 404 crash.
 
 Limitations
 -----------
@@ -52,9 +54,6 @@ as a result, in which the server could lose track of a channel id.
 If Channel API communication fails (due to timeout or any other reason), we do
 not automatically attempt to reconnect. A notification is displayed asking the
 user to reload the page.
-
-"Start a hangout" only works if the application is running on the public
-Internet.
 
 The "g+ Share" button doesn't work on localhost.
 

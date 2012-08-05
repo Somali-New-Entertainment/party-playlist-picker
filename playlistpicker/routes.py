@@ -26,7 +26,6 @@ from playlistpicker.handlers.disconnectedhandler import DisconnectedHandler
 from playlistpicker.handlers.editplaylisthandler import EditPlaylistHandler
 from playlistpicker.handlers.generatechanneltokenhandler import\
   GenerateChannelTokenHandler
-from playlistpicker.handlers.hangoutsgadget import HangoutsGadgetHandler
 from playlistpicker.handlers.moveplaylistentryhandler import MovePlaylistEntryHandler
 from playlistpicker.handlers.playlistshandler import PlaylistsHandler
 from playlistpicker.handlers.removeplaylistentryhandler import\
@@ -52,6 +51,5 @@ ROUTES = [
   ('/search', SearchHandler),
   ('/oauth2callback', OAuth2Handler),
   ('/_ah/channel/connected/', ConnectedHandler),
-  ('/_ah/channel/disconnected/', DisconnectedHandler),
-  ('/hangouts_gadget.xml', HangoutsGadgetHandler)
+  ('/_ah/channel/disconnected/', DisconnectedHandler)
 ]

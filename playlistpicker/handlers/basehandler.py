@@ -24,7 +24,6 @@ from gdata.service import RequestError
 from google.appengine.api import app_identity, users
 from google.appengine.ext import webapp
 import httplib2
-import logging
 from oauth2client.appengine import CredentialsModel, OAuth2Decorator, \
   StorageByKeyName
 
@@ -206,22 +205,3 @@ class BaseHandler(webapp.RequestHandler):
   def _force_refresh(self):
     """HACK: Force the refresh of the OAuth2 token."""
     self.oauth2_decorator.credentials._refresh(httplib2.Http().request)
-
-  def redirect(self, uri, permanent=False):
-    """HACK: Fix OAuth problems that occur when embedded.
-
-    The OAuth2Decorator works by redirecting the user to an OAuth page if
-    we need certain permissions.  That doesn't work if the application is
-    running inside an iframe (e.g. when we're embedded in a hangout).  Catch
-    the attempted redirect, and handle the situation in a more manual way.
-
-    """
-    if (uri.startswith("https://accounts.google.com/o/oauth2/auth") and
-        self.request.get("embedded") == "1"):
-      logging.info(
-        "Hijacking the OAuth flow because it won't work in an iframe")
-      template_params = dict(oauth_uri=uri, continuation_uri=self.request.url)
-      webutils.render_to_response(self, "embedded_oauth.html",
-        template_params)
-    else:
-      webapp.RequestHandler.redirect(self, uri, permanent)

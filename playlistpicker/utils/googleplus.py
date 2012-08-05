@@ -17,13 +17,8 @@
 __author__ = \
   'jeffy@google.com (Jeff Posnick) and jjinux@google.com (JJ Behrens)'
 
-import os
-import os.path
-
 from apiclient.discovery import build
 from google.appengine.api import memcache
 import httplib2
-
-HANGOUTS_URL = "https://foo.talkgadget.google.com/hangouts"
 
 service = build("plus", "v1", http=httplib2.Http(memcache))
