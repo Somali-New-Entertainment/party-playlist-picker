@@ -10,9 +10,12 @@
 {% endblock %}
 
 {% block content %}
-<div itemscope itemtype=http://schema.org/Product>
-  <h1 itemprop=name>Party Playlist Picker</h1>
-  <img itemprop=image src=/static/images/ppplogo.png>
-  <p itemprop=description>You've been invited to <a href={{ quoted_redirection_url }}>edit</a> a shared YouTube playlist!</p>
-</div>
+  <div itemscope itemtype=http://schema.org/Product>
+    <h1 itemprop=name>Party Playlist Picker</h1>
+    <img itemprop=image src=/static/images/ppplogo.png>
+    <p itemprop=description>
+      You've been invited to <a href={{ quoted_redirection_url }}>edit</a>
+      a shared YouTube playlist!
+    </p>
+  </div>
 {% endblock %}

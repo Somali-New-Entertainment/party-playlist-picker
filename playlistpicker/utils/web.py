@@ -84,17 +84,6 @@ def require_params(handler, params, errors=None):
   return errors
 
 
-def pdb_set_trace():
-  """This is how to use pdb with Google App Engine.
-
-  You'll need to restart the server after using this.  Sorry.
-
-  """
-  for attr in ('stdin', 'stdout', 'stderr'):
-    setattr(sys, attr, getattr(sys, '__%s__' % attr))
-  pdb.set_trace()
-
-
 def create_http_with_timeout():
   """Call httplib2.Http and set a time.out."""
   return httplib2.Http(timeout=HTTP_TIMEOUT)

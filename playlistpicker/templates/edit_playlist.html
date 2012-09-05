@@ -19,28 +19,15 @@
 
   <p id=playlist-description>{{ description|escape }}</p>
 
-  {% if not embedded %}
-    <div>
-      You can use
-      <div class=g-plus data-action=share data-annotation=none data-height=20 data-href={{ welcome_page_url }}></div>
-      to invite your friends to edit the playlist whenever they're free,
-      or you can
-      <a href={{ start_hangout_url|escape }}>
-        <img src=/static/images/start_hangout.png alt="Start a hangout"></a>
-      and invite your friends to edit the playlist within the hangout
-      right now.
-    </div>
-  {% endif %}
+  <div class=g-plus data-action=share data-annotation=none data-height=20 data-href={{ welcome_page_url }}></div>
 {% endblock %}
 
 {% block content %}
-  {% if not embedded %}
-    <h3>Partygoers</h3>
+  <h3>Partygoers</h3>
 
-    <div id=friends>
-      {{ friend_list }}
-    </div>
-  {% endif %}
+  <div id=friends>
+    {{ friend_list }}
+  </div>
 
   <div id=edit-playlist-columns>
     <div id=playlist-container>

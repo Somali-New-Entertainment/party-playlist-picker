@@ -22,7 +22,9 @@ This code is somewhat naive in that it ignores locking and race conditions.
 These relationships are stored:
 
   channels:
-    channel_id -> dict(playlist_id=playlist_id, display_name=display_name)
+    channel_id -> dict(playlist_id=playlist_id,
+                       user_id=user_id,
+                       display_name=display_name)
   playlist_to_channels:
     playlist_id -> set of channel_ids
   playlist_to_people:
@@ -40,10 +42,12 @@ USER_EXPIRATION_SECS = 60 * 60 * 2  # 2 hours
 CIRCLE_EXPIRATION_SECS = 60 * 10  # 10 minutes
 
 
-def update_memcache(channel_id, playlist_id, display_name, people):
+def update_memcache(channel_id, playlist_id, user_id, display_name, people):
   """Add a bunch of data to memcache concerning the channels and playlist."""
   assert memcache.set(channel_id,
-                      dict(playlist_id=playlist_id, display_name=display_name),
+                      dict(playlist_id=playlist_id, 
+                           user_id=user_id,
+                           display_name=display_name),
                       namespace="channels",
                       time=CHANNEL_PLAYLIST_EXPIRATION_SECS)
   channel_ids = get_channels_for_playlist(playlist_id)
@@ -69,7 +73,7 @@ def remove_channel_from_memcache(channel_id):
 
   try:
     channel_ids.remove(channel_id)
-  except KeyError:
+  except ValueError:
     return
     
   assert memcache.set(playlist_id, channel_ids,
@@ -118,9 +122,9 @@ def lookup_editing_status(playlist_id, people):
   """
   channel_ids = get_channels_for_playlist(playlist_id)
   channels = memcache.get_multi(channel_ids, namespace="channels")
-  editors = set(i["display_name"] for i in channels.values())
+  editors = set(i["user_id"] for i in channels.values())
   for p in people:
-    p["editing"] = p["display_name"] in editors
+    p["editing"] = p["user_id"] in editors
 
 
 def cache_call(key, namespace, time, f):

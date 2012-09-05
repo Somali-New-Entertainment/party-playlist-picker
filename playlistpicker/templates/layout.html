@@ -9,17 +9,15 @@
   </head>
 
   <body>
-    {% if not embedded %}
-      <ul id=navigation class=box>
-        <li><a href=https://code.google.com/p/party-playlist-picker/wiki/Help>Help</a></li>
-        <li><a href=https://code.google.com/p/party-playlist-picker/issues/list>Report an Issue</a></li>
-        <li><a href=/playlists/create>Create a Playlist</a></li>
-        <li><a href=/playlists>Manage Playlists</a></li>
-        {% if logout_url %}
-          <li><a href="{{ logout_url|escape }}">Logout</a></li>
-        {% endif %}
-      </ul>
-    {% endif %}
+    <ul id=navigation class=box>
+      <li><a href=https://code.google.com/p/party-playlist-picker/wiki/Help>Help</a></li>
+      <li><a href=https://code.google.com/p/party-playlist-picker/issues/list>Report an Issue</a></li>
+      <li><a href=/playlists/create>Create a Playlist</a></li>
+      <li><a href=/playlists>Manage Playlists</a></li>
+      {% if logout_url %}
+        <li><a href="{{ logout_url|escape }}">Logout</a></li>
+      {% endif %}
+    </ul>
 
     <div id=notification></div>
     {% block page_header %}{% endblock %}

@@ -23,7 +23,6 @@ import urllib
 
 from playlistpicker.handlers.basehandler import BaseHandler
 from playlistpicker.utils import friendlist as friendlistutils
-from playlistpicker.utils import googleplus as googleplusutils
 from playlistpicker.utils import web as webutils
 from playlistpicker.utils import youtube as youtubeutils
 
@@ -44,23 +43,14 @@ class EditPlaylistHandler(BaseHandler):
       self.request.host_url, self.playlist_metadata.playlist_id,
       urllib.urlencode({"uuid": self.playlist_metadata.uuid}))
     welcome_page_url = re.sub(r"/edit/", r"/welcome/", edit_playlist_url, 1)
-    embedded_edit_playlist_url = edit_playlist_url + "&embedded=1"
-    hangouts_gadget_url = "%s/hangouts_gadget.xml?%s" % (
-      self.request.host_url,
-      urllib.urlencode({"edit_playlist_url": embedded_edit_playlist_url}))
-    start_hangout_url = "%s?%s" % (
-      googleplusutils.HANGOUTS_URL,
-      urllib.urlencode({"gdevurl": hangouts_gadget_url}))
-
+    
     template_params["title"] = playlist.title.text
     template_params["description"] = playlist.subtitle.text
     template_params["quoted_playlist_id"] = simplejson.dumps(playlist_id)
     template_params["playlist_id"] = playlist_id
     template_params["video_list"] = youtubeutils.prepare_playlist(entries)
     template_params["quoted_edit_url"] = simplejson.dumps(edit_playlist_url)
-    template_params["start_hangout_url"] = start_hangout_url
     template_params["quoted_uuid"] = simplejson.dumps(
       self.playlist_metadata.uuid)
-    template_params["embedded"] = self.request.get("embedded") == "1"
     template_params["welcome_page_url"] = welcome_page_url
     webutils.render_to_response(self, "edit_playlist.html", template_params)

@@ -253,6 +253,7 @@ limitations under the License.
   // Open a connection using the Channel API when the page loads.
   function openChannelConnection() {
     $.ajax({
+      type: 'POST',
       dataType: 'json',
       url: ('/playlists/edit/' + encodeURIComponent(playlistId) +
             '/generate_channel_token' +

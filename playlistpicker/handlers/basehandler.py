@@ -24,7 +24,6 @@ from gdata.service import RequestError
 from google.appengine.api import app_identity, users
 from google.appengine.ext import webapp
 import httplib2
-import logging
 from oauth2client.appengine import CredentialsModel, OAuth2Decorator, \
   StorageByKeyName
 
@@ -65,6 +64,7 @@ class BaseHandler(webapp.RequestHandler):
     from.
 
     """
+    self.current_user_id = None
     self.current_display_name = None
     self.people = None
     self.owner_oauth_token = None
@@ -108,6 +108,7 @@ class BaseHandler(webapp.RequestHandler):
 
       - self.playlist_metadata
       - self.people
+      - self.current_user_id
       - self.current_display_name
       - self.owner_oauth_token
 
@@ -134,13 +135,21 @@ class BaseHandler(webapp.RequestHandler):
                                            'credentials').get()
       self.owner_oauth_token = owner_credentials.access_token
 
-      me = memcacheutils.cache_call(
-        key=self.oauth2_decorator.credentials.access_token,
-        namespace="oauth2_token_to_user",
-        time=memcacheutils.USER_EXPIRATION_SECS,
-        f=lambda: googleplusutils.service.people().get(userId="me").execute(
-          webutils.create_authorized_http_with_timeout(
-            self.oauth2_decorator.credentials)))
+      try:
+        me = memcacheutils.cache_call(
+          key=self.oauth2_decorator.credentials.access_token,
+          namespace="oauth2_token_to_user",
+          time=memcacheutils.USER_EXPIRATION_SECS,
+          f=lambda: googleplusutils.service.people().get(userId="me").execute(
+            webutils.create_authorized_http_with_timeout(
+              self.oauth2_decorator.credentials)))
+      except HttpError, e:
+        if e.resp['status'] == 404:
+          webutils.render_to_response(self, "no_profile.html")
+          return
+        raise
+
+      self.current_user_id = me["id"]
       self.current_display_name = me["displayName"]
 
       # TODO: Front some of the following datastore lookups with memcache.
@@ -168,7 +177,7 @@ class BaseHandler(webapp.RequestHandler):
       for playlist_editor in playlist_editors:
         person = playlist_editor.parent()
         self.people.append(dict(
-          id=person.user_id,
+          user_id=person.user_id,
           display_name=person.display_name,
           image_url=person.image_url,
           profile_url=person.profile_url
@@ -196,22 +205,3 @@ class BaseHandler(webapp.RequestHandler):
   def _force_refresh(self):
     """HACK: Force the refresh of the OAuth2 token."""
     self.oauth2_decorator.credentials._refresh(httplib2.Http().request)
-
-  def redirect(self, uri, permanent=False):
-    """HACK: Fix OAuth problems that occur when embedded.
-
-    The OAuth2Decorator works by redirecting the user to an OAuth page if
-    we need certain permissions.  That doesn't work if the application is
-    running inside an iframe (e.g. when we're embedded in a hangout).  Catch
-    the attempted redirect, and handle the situation in a more manual way.
-
-    """
-    if (uri.startswith("https://accounts.google.com/o/oauth2/auth") and
-        self.request.get("embedded") == "1"):
-      logging.info(
-        "Hijacking the OAuth flow because it won't work in an iframe")
-      template_params = dict(oauth_uri=uri, continuation_uri=self.request.url)
-      webutils.render_to_response(self, "embedded_oauth.html",
-        template_params)
-    else:
-      webapp.RequestHandler.redirect(self, uri, permanent)

@@ -17,6 +17,8 @@
 __author__ = \
   'jeffy@google.com (Jeff Posnick) and jjinux@google.com (JJ Behrens)'
 
+import logging
+
 from playlistpicker.handlers.basehandler import BaseHandler
 from playlistpicker.utils import friendlist as friendlistutils
 from playlistpicker.utils import memcache as memcacheutils
@@ -26,8 +28,14 @@ class DisconnectedHandler(BaseHandler):
   def post(self):
     """Update the list of connected clients and notify the other users."""
     channel_id = self.request.get('from')
-    channel = memcacheutils.lookup_channel(channel_id)
-    memcacheutils.remove_channel_from_memcache(channel_id)
-    friendlistutils.notify_with_new_friend_list(channel["playlist_id"])
-
-
+    
+    # If we don't know about the channel being disconnected, then there's
+    # not much for us to do. This could happen if it fell out of memcache.
+    try:
+      channel = memcacheutils.lookup_channel(channel_id)
+    except KeyError:
+      logging.warn("DisconnectedHandler received an unknown channel_id: %s" %
+                   channel_id)
+    else:
+      memcacheutils.remove_channel_from_memcache(channel_id)
+      friendlistutils.notify_with_new_friend_list(channel["playlist_id"])
