@@ -1,0 +1,1 @@
+Party Playlist Picker lets you collaboratively edit a YouTube playlist. This is meant to be sample code, not a polished product. It's a Google App Engine application written in Python. It has some Google+ integration. It's uses the older !GData client library for Python along with an older version of the YouTube API.
